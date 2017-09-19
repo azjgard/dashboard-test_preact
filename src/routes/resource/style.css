@@ -1,0 +1,16 @@
+.profile {
+	min-height: 100%;
+	width: 100%;
+}
+
+.resources > div {
+	background-color: #ccc;
+	box-shadow: 5px 5px 10px #aaa;
+	margin: 10px 0;
+	padding: 10px;
+}
+
+.resources h2 {
+	margin: 0;
+	color: #1f86c9;
+}
