@@ -5,8 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "eslint src && preact test",
-		"start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-		"web": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
+		"start": "if-env NODE_ENV=production && npm run -s serve --port=$PORT || npm run -s dev",
+		"web": "if-env NODE_ENV=production && npm run -s serve --port=$PORT|| npm run -s dev",
 		"build": "preact build",
 		"serve": "preact build && preact serve --port=$PORT",
 		"dev": "preact watch"
