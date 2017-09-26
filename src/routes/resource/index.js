@@ -1,35 +1,44 @@
 import { h, Component } from 'preact';
+
+// Components
+import Resource from '../../components/Resource'
+
+import server from '../../fake-server'
 import style from './style';
-import server from './fake-server'
 
-console.log(server);
-
-export default class Resource extends Component {
-	state = {
-		time: Date.now(),
-		count: 10
-	};
-
-	// gets called when this route is navigated to
-	componentDidMount() {
-		// start a timer for the clock:
-		this.timer = setInterval(this.updateTime, 1000);
+/**
+ * @param  {} resource = the name of the resource (as passed in the URL)
+ * @param  {} resourcesClassName = the class name to give to the resource div
+ */
+function render(resource, resourcesClassName) {
+	try {
+		let resourceInstances = server.resourceData[resource].instances;
+		let views             = [];
+	
+		for (let i = 0; i < resourceInstances.length; i++) {
+			views.push(
+				<Resource data={ resourceInstances[i] } resource={ resource } />
+			);
+		}
+	
+		return (
+			<div class={resourcesClassName}>
+				{ views }
+			</div>
+		);
 	}
-
-	// gets called just before navigating away from the route
-	componentWillUnmount() {
-		clearInterval(this.timer);
+	catch (e) {
+		return (
+			<h3>No data was returned for this resource..</h3>
+		);
 	}
+}
 
-	// update the current time
-	updateTime = () => {
-		this.setState({ time: Date.now() });
-	};
-
-	increment = () => {
-		this.setState({ count: this.state.count+1 });
-	};
-
+export default class ResourceView extends Component {
+	
+	/**
+	 * @param  {} resource = converts "resource-name" to "Resource Name"
+	 */
 	getResourceTitle = (resource) => {
 		return resource
 			.split('-')
@@ -37,14 +46,13 @@ export default class Resource extends Component {
 			.join(' ');
 	};
 
-	// Note: `user` comes from the URL, courtesy of our router
-	render({ resource }, { time, count }) {
+	render({ resource }) {
 		let resourceTitle = this.getResourceTitle(resource);
 
 		return (
-			<div class={style.profile}>
+			<div class={style.container}>
 				<h1>{ resourceTitle }</h1>
-				{ server.render(resource, style.resources) }
+				{ render(resource, style.resources) }
 			</div>
 		);
 	}

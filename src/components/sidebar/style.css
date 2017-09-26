@@ -1,5 +1,5 @@
 .sidebar {
-	position: fixed;
+	position: absolute;
 	left: 0;
 	top: 0;
 	width: 300px;
@@ -14,31 +14,6 @@
 	font-size: 100%;
 }
 
-.sidebar nav a {
-  display: block;
-  padding: 12px;
-  border: 1px solid transparent;
-  box-shadow: 5px 5px 10px #aaa;
-  text-decoration: none;
-  color: #555;
-  font-family: Helvetica;
-	font-size: 100%;
-	max-width: 80%;
-	margin: 15px auto;
-
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  transition: all .5s;
-
-  -webkit-transition-property: background-color, border;
-  -moz-transition-property: background-color, border;
-  transition-property: background-color, border;
-}
-
-.sidebar nav span {
-	padding-left: 12px;
-}
-
 .sidebar .branding {
 	margin: 40px 0;
 }
@@ -50,15 +25,4 @@
 
 .sidebar .branding img:not(.mobile) {
 	display: block;
-}
-
-.sidebar nav a:hover,
-.sidebar nav a:active {
-	border: 1px solid #555;
-}
-
-.sidebar nav a.active {
-	color: #000;
-	border: 1px solid #555;
-	background: rgba(170, 170, 170, 0.55);
 }

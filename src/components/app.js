@@ -1,11 +1,14 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
-import Sidebar from './sidebar';
-import Home from '../routes/home';
-import Resource from '../routes/resource';
-// import Home from 'async!./home';
-// import Profile from 'async!./profile';
+// Components
+import Sidebar from './Sidebar';
+import NavElement from './Sidebar/NavElement'
+
+// Routes
+import HomeRoute from '../routes/home';
+import ResourceRoute from '../routes/resource';
+import ResourceInstanceRoute from '../routes/resourceInstance';
 
 export default class App extends Component {
 	/** Gets fired when the route changes.
@@ -19,11 +22,19 @@ export default class App extends Component {
 	render() {
 		return (
 			<div id="app">
-				<Sidebar />
+
+				<Sidebar>
+					<NavElement href="/" icon="home">Home</NavElement>
+					<NavElement href="/resources/virtual-machines" icon="server">Virtual Machines</NavElement>
+					<NavElement href="/resources/storage-accounts" icon="bullseye">Storage Accounts</NavElement>
+				</Sidebar>
+
 				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Resource path="/resources/:resource" />
+					<HomeRoute path="/" />
+					<ResourceRoute path="/resources/:resource" />
+					<ResourceInstanceRoute path="/resources/:resource/:resource_id" />
 				</Router>
+
 			</div>
 		);
 	}

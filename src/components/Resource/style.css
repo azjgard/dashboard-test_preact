@@ -1,0 +1,15 @@
+.resource {
+  position: relative;
+}
+
+.manage {
+  display: block;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #1f86c9;
+  text-decoration: none;
+  background-color: #eaeaea;
+  box-shadow: 5px 5px 5px #aaa;
+  padding: 5px;
+}
